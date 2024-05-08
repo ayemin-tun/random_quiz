@@ -5,8 +5,9 @@ import HomePage from "@/components/ChangePage/HomePage";
 import NameRequestPage from "@/components/ChangePage/NameRequestPage";
 import QuestionFilterPage from "@/components/ChangePage/QuestionFilterPage";
 import QuestionPage from "@/components/ChangePage/QuestionPage";
+import { usePageChangeInfo } from "@/store/PageChange.store";
 export default function Home() {
-  const [currentStep, setCurrentStep] = useState(0);
+  const { currentStep, setCurrentStep } = usePageChangeInfo();
   const handleChangeSteps = (newStep) => {
     setCurrentStep(newStep);
   }
@@ -21,12 +22,12 @@ export default function Home() {
         <QuestionFilterPage />
         <QuestionPage />
       </ControlledStep>
-      <button
+      {/* <button
         className="fixed z-50 bottom-0 px-2 py-1 bg-gray-700 text-white right-0"
         onClick={() => setCurrentStep(currentStep + 1)}
       >
         Next
-      </button>
+      </button> */}
     </main>
   );
 }
