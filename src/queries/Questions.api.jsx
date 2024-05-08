@@ -10,3 +10,8 @@ export const useGetQuestion = (query) => {
     },
   });
 };
+
+export const useFetchQuestion = async (query) => {
+  const response = await QuestionService(query);
+  return response;
+};
