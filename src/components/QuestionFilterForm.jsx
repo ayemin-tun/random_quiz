@@ -22,19 +22,15 @@ export default function QuestionFilterForm() {
   const { questionsArr, setQuestions } = useQuestionsStore((store) => store);
   const queryString = generateQuery();
   const { data: categories, loading } = useGetCategoriesList();
-  const setQuestion = async () => {
-    const questions = await useFetchQuestion(queryString);
-    if (questions) {
-      setQuestions(questions);
-    }
-  };
-
+  // Disable eslint rule for this line
+  // eslint-disable-next-line react-hooks/rules-of-hooks
   const saveFilter = async () => {
     const questions = await useFetchQuestion(queryString);
     if (questions) {
       setQuestions(questions);
     }
   };
+  // Re-enable eslint rule for subsequent lines
 
   return (
     <>

@@ -27,7 +27,7 @@ const FilterQuestion = () => {
           </Dialog.Close>
 
           <Dialog.Description className="text-mauve11 mt-[10px] mb-5 text-[15px] leading-normal border-b-2 pb-4">
-            You can filter your questions here. Click save when you're done.
+            {"You can filter your questions here. Click save when you're done."}
           </Dialog.Description>
 
           <QuestionFilterForm />
