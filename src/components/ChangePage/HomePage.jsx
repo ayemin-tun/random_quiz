@@ -8,7 +8,7 @@ export default function HomePage() {
   const { currentStep, setCurrentStep } = usePageChangeInfo();
   return (
     <div className="w-full h-screen grid md:grid-cols-2 grid-cols-1">
-      <div className="flex flex-col justify-center md:bg-gradient-to-r md:from-blue-400 md:to-cyan-500 p-6">
+      <div className="flex flex-col md:justify-center justify-end md:bg-gradient-to-r md:from-blue-400 md:to-cyan-500 p-6">
         <h1 className="md:flex gap-2 items-center font-extrabold md:text-5xl text-4xl text-wrap mb-4">
           <LuBrainCircuit className="text-yellow-500" /> Test Your Knowledge
         </h1>
