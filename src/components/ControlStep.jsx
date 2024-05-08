@@ -1,30 +1,33 @@
 import React from "react";
+import { motion } from "framer-motion";
 
 const ControlledStep = ({ children, currentStep, handleChangeSteps }) => {
   // Extract the current step component based on the currentStep index
   const currentStepComponent = React.Children.toArray(children)[currentStep];
 
-  // Prepare props to pass down to the child component
-  const propsToPass = {
-    currentStep,
-    handleChangeSteps,
+  // Define animation variants for entering and exiting steps
+  const stepVariants = {
+    hidden: { opacity: 0 },
+    visible: { opacity: 1, transition: { duration: 0.5 } },
+    exit: { opacity: 0, transition: { duration: 0.5 } },
   };
 
-  // Check if the currentStepComponent is a valid React element
-  if (React.isValidElement(currentStepComponent)) {
-    // Clone the currentStepComponent and pass propsToPass to it
-    return React.cloneElement(currentStepComponent, propsToPass);
-  }
-
-  // If currentStepComponent is not a valid element, return it as is
-  return currentStepComponent;
+  return (
+    <motion.div
+      key={currentStep}
+      variants={stepVariants}
+      initial="hidden"
+      animate="visible"
+      exit="exit"
+    >
+      {/* Render the current step component with passed props */}
+      {React.isValidElement(currentStepComponent) &&
+        React.cloneElement(currentStepComponent, {
+          currentStep,
+          handleChangeSteps,
+        })}
+    </motion.div>
+  );
 };
-
-// Usage:
-// <ControlledStep currentStep={0} handleChangeSteps={(newStep) => console.log(newStep)}>
-//   <StepComponent1 />
-//   <StepComponent2 />
-//   <StepComponent3 />
-// </ControlledStep>
 
 export default ControlledStep;
