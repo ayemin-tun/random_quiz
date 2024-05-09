@@ -6,7 +6,7 @@ const FilterQuestion = () => {
   return (
     <Dialog.Root>
       <Dialog.Trigger asChild>
-        <button className="text-violet11 shadow-blackA4 hover:bg-mauve3 inline-flex h-[35px] items-center justify-center rounded-[4px] bg-white px-[15px] font-medium leading-none border">
+        <button className="sm:px-5 px-3 py-1 sm:py-2 bg-blue-800 text-white cursor-pointer ">
           Filter Question
         </button>
       </Dialog.Trigger>

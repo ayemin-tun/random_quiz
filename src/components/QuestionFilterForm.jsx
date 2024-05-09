@@ -7,8 +7,10 @@ import { useFetchQuestion, useGetQuestion } from "@/queries/Questions.api";
 import { generateQuery } from "@/lib/utils";
 import { useQuestionsStore } from "@/store/Question.store";
 import { QueryClient } from "@tanstack/react-query";
+import { usePageChangeInfo } from "@/store/PageChange.store";
 
 export default function QuestionFilterForm() {
+  const { userName, currentStep, setCurrentStep } = usePageChangeInfo();
   const {
     amount,
     setAmount,
@@ -28,6 +30,7 @@ export default function QuestionFilterForm() {
     const questions = await useFetchQuestion(queryString);
     if (questions) {
       setQuestions(questions);
+      setCurrentStep(currentStep + 1);
     }
   };
   // Re-enable eslint rule for subsequent lines
