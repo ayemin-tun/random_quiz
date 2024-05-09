@@ -6,6 +6,7 @@ import NameRequestPage from "@/components/ChangePage/NameRequestPage";
 import QuestionFilterPage from "@/components/ChangePage/QuestionFilterPage";
 import QuestionPage from "@/components/ChangePage/QuestionPage";
 import { usePageChangeInfo } from "@/store/PageChange.store";
+import WelcomePage from "@/components/ChangePage/WelcomePage";
 export default function Home() {
   const { currentStep, setCurrentStep } = usePageChangeInfo();
   const handleChangeSteps = (newStep) => {
@@ -19,6 +20,7 @@ export default function Home() {
       >
         <HomePage />
         <NameRequestPage />
+        <WelcomePage />
         <QuestionFilterPage />
         <QuestionPage />
       </ControlledStep>
