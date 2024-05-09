@@ -11,8 +11,8 @@ export default function WelcomePage() {
           Okay{" "}
           <span className="text-gray-600 font-extrabold font-4xl">
             {userName}
-          </span>{" "}
-          ,let's see how far you will go ...
+          </span>
+          {"  ,let's see how far you will go ... "}
         </h1>
 
         <div className="flex gap-2">

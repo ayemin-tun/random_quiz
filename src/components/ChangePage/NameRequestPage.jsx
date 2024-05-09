@@ -17,7 +17,7 @@ export default function NameRequestPage() {
     <div className="w-full h-screen flex flex-col justify-center items-center">
       <div className="p-3">
         <h1 className="md:text-3xl text-2xl font-bold mb-2">
-          What's your name,{" "}
+          {"What's your name, "}
           <span className="text-gray-800 font-extrabold font-4xl">
             challenger
           </span>
