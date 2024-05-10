@@ -93,6 +93,11 @@ export default function QuestionAnswers({ question, index }) {
           {isCorrect[index] ? "Correct..." : "Incorrect..."}
         </p>
       )}
+
+      <p className="flex justify-end">
+        {index + 1} of {amount}
+      </p>
+
       {!checkAnswer && (
         <div className="flex gap-2 mt-7">
           <button
@@ -155,14 +160,6 @@ export default function QuestionAnswers({ question, index }) {
               )}
             </button>
           </div>
-          <button
-            className={`px-6 py-3 ${
-              selectedAnswer ? "bg-blue-800" : "bg-blue-500"
-            } text-white cursor-pointer `}
-            onClick={(e) => setCurrentStep(3)}
-          >
-            Reset
-          </button>
         </div>
       )}
     </>

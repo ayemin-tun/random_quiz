@@ -1,11 +1,13 @@
+import { useFetchToken } from "@/queries/Token.api";
 import { usePageChangeInfo } from "@/store/PageChange.store";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { FaAngleLeft } from "react-icons/fa";
 
 export default function NameRequestPage() {
   const [error, setError] = useState(false);
   const { userName, setUserName, currentStep, setCurrentStep } =
     usePageChangeInfo();
+
   const handleName = () => {
     if (userName.trim() === "") {
       setError("true");

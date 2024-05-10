@@ -5,6 +5,7 @@ import { useQuestionsStore } from "@/store/Question.store";
 import { usePageChangeInfo } from "@/store/PageChange.store";
 import { useQuestionFilterStore } from "@/store/QuestionFilter.store";
 import Image from "next/image";
+import ResetButton from "@/components/ui/ResetButton";
 
 export default function CheckAnswer() {
   const { userName, currentStep, setCurrentStep, setCheckAnswer, checkAnswer } =
@@ -27,7 +28,7 @@ export default function CheckAnswer() {
     const correctPercentage = (getTotalCorrectAnswer(isCorrect) / amount) * 100;
     if (correctPercentage >= 75) {
       return "Great job! Excellent Work.";
-    } else if (correctPercentage >= 65) {
+    } else if (correctPercentage >= 35) {
       return "Good job! Not Bad ... Not Bad.";
     } else {
       return "Keep Going! You could do better.";
@@ -37,7 +38,7 @@ export default function CheckAnswer() {
     const correctPercentage = (getTotalCorrectAnswer(isCorrect) / amount) * 100;
     if (correctPercentage >= 75) {
       return "/img/wow.jpg";
-    } else if (correctPercentage >= 65) {
+    } else if (correctPercentage >= 35) {
       return "/img/notbad.jpg";
     } else {
       return "/img/bad.jpg";
@@ -73,12 +74,7 @@ export default function CheckAnswer() {
             Check Answers
           </button>
 
-          <button
-            className={`px-6 py-3 bg-red-800 text-white cursor-pointer `}
-            onClick={(e) => setCurrentStep(3)}
-          >
-            Try again
-          </button>
+          <ResetButton className={"px-6 py-3"}>Try Again</ResetButton>
         </div>
       </div>
     </div>

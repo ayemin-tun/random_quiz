@@ -13,7 +13,7 @@ export default function QuestionFilterPage() {
           {"Before you get started, please filter the questions ..."}
         </h1>
 
-        <div className="flex gap-2  md:justify-start justify-center">
+        <div className="flex gap-2">
           <button
             className="px-6 py-3 bg-red-800 text-white cursor-pointer "
             onClick={(e) => setCurrentStep(currentStep - 1)}

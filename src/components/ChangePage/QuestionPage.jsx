@@ -4,21 +4,21 @@ import QuestionCategory from "./components/QuestionCategory";
 import QuestionText from "./components/QuestionText";
 import QuestionAnswres from "./components/QuestionAnswres";
 import { useQuestionFilterStore } from "@/store/QuestionFilter.store";
-
+import ResetButton from "../ui/ResetButton";
+import { MdOutlineLockReset } from "react-icons/md";
 export default function QuestionPage({ question, index }) {
-  const { userName, currentStep, setCurrentStep, setCheckAnswer } =
-    usePageChangeInfo();
-  const { amount } = useQuestionFilterStore();
-  const handleCheckAnswer = () => {
-    setCheckAnswer(true);
-    setCurrentStep(currentStep - (parseInt(amount) - 1));
-  };
   return (
     <div className="w-full h-screen flex justify-center items-center">
-      <div className="p-3 w-[80%]">
+      <div className="absolute top-6 right-6">
+        <ResetButton className={"px-2 py-2 rounded-full"}>
+          <MdOutlineLockReset />
+        </ResetButton>
+      </div>
+      <div className="p-5 md:w-[80%] w-full">
         <QuestionCategory
           category={question.category}
           difficulty={question.difficulty}
+          index={index}
         />
 
         <QuestionText index={index} question={question.question} />

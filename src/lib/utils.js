@@ -1,15 +1,18 @@
 import { useQuestionFilterStore } from "@/store/QuestionFilter.store";
+import Cookies from "js-cookie";
 
 export const generateQuery = () => {
     const { amount, category, difficulty, type } = useQuestionFilterStore(
         (store) => store
     );
+    const token = Cookies.get('questionToken');
     const amountQueryParam = `amount=${amount}`;
     const categoryQueryParam = category ? `&category=${category}` : "";
     const difficultyQueryParam = difficulty ? `&difficulty=${difficulty}` : "";
     const typeQueryParam = type ? `&type=${type}` : "";
+    const tokenQUeryParam = token ? `&token=${token}` : "";
 
-    return `${amountQueryParam}${categoryQueryParam}${difficultyQueryParam}${typeQueryParam}`;
+    return `${amountQueryParam}${categoryQueryParam}${difficultyQueryParam}${typeQueryParam}${tokenQUeryParam}`;
 };
 
 export const decodeHTMLEntities = (text) => {

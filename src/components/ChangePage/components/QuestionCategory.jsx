@@ -8,9 +8,10 @@ export const difficultyColor = (value) => {
   return color;
 };
 
-export default function QuestionCategory({ category, difficulty }) {
+export default function QuestionCategory({ category, difficulty, index }) {
   return (
-    <div className="mb-3 flex justify-end">
+    <div className="mb-3 flex justify-between">
+      <span className="md:hidden gap-1 items-start ">( {index + 1} )</span>
       <div className="flex gap-2">
         <span className="px-2 py-1 bg-gray-700 text-white sm:text-base text-xs rounded-md">
           {decodeHTMLEntities(category)}

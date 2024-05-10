@@ -34,6 +34,14 @@ const useQuestionsStore = create(
                     return { userAnswers: updatedUserAnswers, isCorrect };
                 });
             },
+            reset: () => {
+                set({
+                    questionsArr: [],
+                    answersArray: [],
+                    userAnswers: [],
+                    isCorrect: [],
+                });
+            }
         }),
         {
             name: 'Question_store', // Name of the item in the storage (must be unique)

@@ -1,13 +1,13 @@
 "use client";
-import React, { useEffect } from "react";
+import React from "react";
 import { useQuestionFilterStore } from "@/store/QuestionFilter.store";
 import { useGetCategoriesList } from "@/queries/Categories.api";
 import * as Dialog from "@radix-ui/react-dialog";
-import { useFetchQuestion, useGetQuestion } from "@/queries/Questions.api";
+import { useFetchQuestion } from "@/queries/Questions.api";
 import { generateQuery } from "@/lib/utils";
 import { useQuestionsStore } from "@/store/Question.store";
-import { QueryClient } from "@tanstack/react-query";
 import { usePageChangeInfo } from "@/store/PageChange.store";
+import LoadingSpinner from "./ui/LoadingSpinner";
 
 export default function QuestionFilterForm() {
   const { userName, currentStep, setCurrentStep, setCheckAnswer } =
@@ -24,7 +24,7 @@ export default function QuestionFilterForm() {
   } = useQuestionFilterStore((store) => store);
   const { questionsArr, setQuestions } = useQuestionsStore((store) => store);
   const queryString = generateQuery();
-  const { data: categories, loading } = useGetCategoriesList();
+  const { data: categories, isLoading } = useGetCategoriesList();
   // Disable eslint rule for this line
   // eslint-disable-next-line react-hooks/rules-of-hooks
   const saveFilter = async () => {
@@ -35,7 +35,6 @@ export default function QuestionFilterForm() {
       setCurrentStep(currentStep + 1);
     }
   };
-  // Re-enable eslint rule for subsequent lines
 
   return (
     <>
@@ -46,7 +45,7 @@ export default function QuestionFilterForm() {
         <select
           value={amount}
           onChange={(event) => setAmount(event.target.value)}
-          className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5"
+          className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5 w-full"
         >
           {[...Array(50).keys()].map((num) => (
             <option key={num + 1} value={num + 1}>
@@ -60,13 +59,19 @@ export default function QuestionFilterForm() {
         <label className="w-[90px] text-[15px]" htmlFor="name">
           Category
         </label>
-        <select
-          value={category}
-          onChange={(event) => setCategory(event.target.value)}
-          className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5 max-w-full"
-        >
-          {loading && <option value="">Category Loading ...</option>}
-          {!loading && (
+        {isLoading && (
+          <div className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5 w-full">
+            <span className="flex">
+              <LoadingSpinner />
+            </span>
+          </div>
+        )}
+        {!isLoading && (
+          <select
+            value={category}
+            onChange={(event) => setCategory(event.target.value)}
+            className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5 w-full"
+          >
             <>
               <option value="">Any Categories</option>
               {categories &&
@@ -80,8 +85,8 @@ export default function QuestionFilterForm() {
                   </option>
                 ))}
             </>
-          )}
-        </select>
+          </select>
+        )}
       </fieldset>
 
       <fieldset className="mb-[15px] flex md:flex-row flex-col gap-2 md:items-center">
