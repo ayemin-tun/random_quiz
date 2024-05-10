@@ -28,3 +28,13 @@ export const shuffleArray = (array) => {
     }
     return array;
 };
+
+export const getTotalCorrectAnswer = (answrArray) => {
+    const correctCount = answrArray.reduce((count, currentValue) => {
+        if (currentValue === true) {
+            return count + 1;
+        }
+        return count;
+    }, 0);
+    return correctCount
+}

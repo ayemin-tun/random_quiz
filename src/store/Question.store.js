@@ -18,24 +18,22 @@ const useQuestionsStore = create(
 
                 // Initialize userAnswers and isCorrect arrays based on questions length
                 const userAnswers = Array(questions.length).fill(null);
-                const isCorrect = Array(questions.length).fill(false);
+                const isCorrect = Array(questions.length).fill(null);
 
                 set({ questionsArr: questions, answersArray, userAnswers, isCorrect });
             },
-            setUserAnswer: (index, answer) =>
+            // Action to update userAnswers based on selected answer
+            setUserAnswer: (questionIndex, selectedAnswer) => {
                 set((state) => {
-                    const userAnswers = [...state.userAnswers];
-                    userAnswers[index] = answer;
-                    return { userAnswers };
-                }),
-            checkUserAnswers: () =>
-                set((state) => {
-                    const { questionsArr, answersArray, userAnswers, isCorrect } = state;
-                    const newIsCorrect = userAnswers.map((userAnswer, index) => {
-                        return userAnswer === questionsArr[index].correct_answer;
-                    });
-                    return { isCorrect: newIsCorrect };
-                }),
+                    const updatedUserAnswers = [...state.userAnswers];
+                    updatedUserAnswers[questionIndex] = selectedAnswer;
+
+                    const isCorrect = [...state.isCorrect];
+                    const correctAnswer = state.questionsArr[questionIndex].correct_answer;
+                    isCorrect[questionIndex] = selectedAnswer === correctAnswer;
+                    return { userAnswers: updatedUserAnswers, isCorrect };
+                });
+            },
         }),
         {
             name: 'Question_store', // Name of the item in the storage (must be unique)

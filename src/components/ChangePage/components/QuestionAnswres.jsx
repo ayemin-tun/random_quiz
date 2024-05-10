@@ -1,37 +1,170 @@
 "use client";
-import { decodeHTMLEntities, shuffleArray } from "@/lib/utils";
+import React, { useState } from "react";
+import { decodeHTMLEntities } from "@/lib/utils";
 import { useQuestionsStore } from "@/store/Question.store";
-import React, { useMemo } from "react";
+import { usePageChangeInfo } from "@/store/PageChange.store";
+import { useQuestionFilterStore } from "@/store/QuestionFilter.store";
+import { FaAngleLeft, FaAngleRight } from "react-icons/fa";
+export default function QuestionAnswers({ question, index }) {
+  const { userName, currentStep, setCurrentStep, setCheckAnswer, checkAnswer } =
+    usePageChangeInfo();
+  const { amount } = useQuestionFilterStore();
+  const { answersArray, userAnswers, isCorrect } = useQuestionsStore(
+    (store) => ({
+      answersArray: store.answersArray,
+      userAnswers: store.userAnswers,
+      isCorrect: store.isCorrect,
+    })
+  );
 
-export default function QuestionAnswres({ question, index }) {
-  const allAnswers = [question.correct_answer, ...question.incorrect_answers];
-  const { questionsArr, setQuestions } = useQuestionsStore((store) => store);
-  const shuffledAnswers = useMemo(() => {
-    console.log("Calculating shuffledAnswers...");
-    return shuffleArray(allAnswers);
-  }, [questionsArr]);
+  const [selectedAnswer, setSelectedAnswer] = useState(
+    userAnswers[index] || null
+  );
 
-  console.log("Rendering QuestionAnswers:", shuffledAnswers);
+  const { setUserAnswer } = useQuestionsStore(); // Get setUserAnswer action from store
+
+  const handleItemClick = (answer) => {
+    if (!checkAnswer) {
+      setSelectedAnswer(answer);
+      setUserAnswer(index, answer); // Update userAnswer in the store
+    }
+  };
+
+  const handleCheckAnswer = () => {
+    setCheckAnswer(true);
+    setCurrentStep(currentStep + 1);
+  };
+
+  const answerCheckClass = (selectedAnswer, answer, correct_answer) => {
+    let checkClass = "";
+    if (checkAnswer) {
+      if (answer === correct_answer) {
+        checkClass = "bg-opacity-80 bg-green-500";
+      }
+
+      if (selectedAnswer === answer) {
+        if (answer === correct_answer) {
+          checkClass = "bg-opacity-80 bg-green-500";
+        } else {
+          checkClass = " bg-red-500 font-bold";
+        }
+      }
+    } else {
+      if (selectedAnswer === answer) {
+        checkClass = "bg-opacity-80 bg-gray-200";
+      }
+    }
+    return checkClass;
+  };
+
   return (
-    <ul className="flex gap-3 m-4 flex-wrap">
-      {shuffledAnswers.map((answer, answerIndex) => (
-        <li
-          key={answerIndex}
-          className="flex gap-2 border px-3 py-1 text-base bg-opacity-20 backdrop-blur-lg bg-gray-200 "
+    <>
+      <ul className="flex gap-3 m-4 flex-wrap">
+        {answersArray[index].map((answer, answerIndex) => (
+          <li
+            key={answerIndex}
+            className={`rounded flex gap-2 border px-3 py-1 text-base cursor-pointer hover:bg-opacity-50 ${answerCheckClass(
+              selectedAnswer,
+              answer,
+              question.correct_answer
+            )}`}
+            onClick={() => handleItemClick(answer)}
+          >
+            <input
+              className="cursor-pointer"
+              type="radio"
+              disabled={checkAnswer}
+              name={`question-${index}`}
+              value={answer}
+              checked={selectedAnswer === answer}
+              onChange={() => {}}
+            />
+            {decodeHTMLEntities(answer)}
+          </li>
+        ))}
+      </ul>
+
+      {checkAnswer && (
+        <p
+          className={`w-full p-2 rounded-md ${
+            isCorrect[index] ? "bg-green-400" : "bg-red-400"
+          } m-2`}
         >
-          <input
-            className="cursor-pointer"
-            type="radio"
-            name={`question-${index}`}
-            value={answer}
-          />
-          {answer === question.correct_answer ? (
-            <span className="font-extrabold">{decodeHTMLEntities(answer)}</span>
+          {isCorrect[index] ? "Correct..." : "Incorrect..."}
+        </p>
+      )}
+      {!checkAnswer && (
+        <div className="flex gap-2 mt-7">
+          <button
+            className={`sm:px-5 px-3 py-1 sm:py-2 ${
+              currentStep === 4 ? "bg-gray-500" : "bg-red-800"
+            } text-white cursor-pointer `}
+            onClick={(e) => setCurrentStep(currentStep - 1)}
+            disabled={currentStep === 4}
+          >
+            <FaAngleLeft />
+          </button>
+
+          {currentStep >= parseInt(amount) + 3 ? (
+            <button
+              disabled={!selectedAnswer}
+              onClick={handleCheckAnswer}
+              className={`sm:px-5 px-3 py-1 sm:py-2 ${
+                selectedAnswer ? "bg-blue-800" : "bg-blue-500"
+              } text-white cursor-pointer `}
+            >
+              Check Answer
+            </button>
           ) : (
-            <i>{decodeHTMLEntities(answer)}</i>
+            <button
+              className={`sm:px-5 px-3 py-1 sm:py-2 ${
+                selectedAnswer ? "bg-blue-800" : "bg-blue-500"
+              } text-white cursor-pointer `}
+              onClick={(e) => setCurrentStep(currentStep + 1)}
+              disabled={!selectedAnswer}
+            >
+              <FaAngleRight />
+            </button>
           )}
-        </li>
-      ))}
-    </ul>
+        </div>
+      )}
+
+      {checkAnswer && (
+        <div className="flex gap-2 justify-between mt-5">
+          <div className="flex gap-2">
+            <button
+              className={`sm:px-5 px-3 py-1 sm:py-2 ${
+                currentStep === 4 ? "bg-gray-500" : "bg-red-800"
+              } text-white cursor-pointer `}
+              onClick={(e) => setCurrentStep(currentStep - 1)}
+              disabled={currentStep === 4}
+            >
+              <FaAngleLeft />
+            </button>
+            {/* {currentStep < parseInt(amount) + 3 && ( */}
+            <button
+              onClick={(e) => setCurrentStep(currentStep + 1)}
+              className={`sm:px-5 px-3 py-1 sm:py-2 ${
+                selectedAnswer ? "bg-blue-800" : "bg-blue-500"
+              } text-white cursor-pointer sm:text-base text-sm`}
+            >
+              {currentStep >= parseInt(amount) + 3 ? (
+                "Check My Score"
+              ) : (
+                <FaAngleRight />
+              )}
+            </button>
+          </div>
+          <button
+            className={`sm:px-5 px-3 py-1 sm:py-2 ${
+              selectedAnswer ? "bg-blue-800" : "bg-blue-500"
+            } text-white cursor-pointer `}
+            onClick={(e) => setCurrentStep(3)}
+          >
+            Reset
+          </button>
+        </div>
+      )}
+    </>
   );
 }

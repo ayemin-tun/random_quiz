@@ -10,7 +10,8 @@ import { QueryClient } from "@tanstack/react-query";
 import { usePageChangeInfo } from "@/store/PageChange.store";
 
 export default function QuestionFilterForm() {
-  const { userName, currentStep, setCurrentStep } = usePageChangeInfo();
+  const { userName, currentStep, setCurrentStep, setCheckAnswer } =
+    usePageChangeInfo();
   const {
     amount,
     setAmount,
@@ -30,6 +31,7 @@ export default function QuestionFilterForm() {
     const questions = await useFetchQuestion(queryString);
     if (questions) {
       setQuestions(questions);
+      setCheckAnswer(false);
       setCurrentStep(currentStep + 1);
     }
   };

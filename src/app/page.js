@@ -8,8 +8,9 @@ import QuestionPage from "@/components/ChangePage/QuestionPage";
 import { usePageChangeInfo } from "@/store/PageChange.store";
 import WelcomePage from "@/components/ChangePage/WelcomePage";
 import { useQuestionsStore } from "@/store/Question.store";
+import CheckAnswer from "@/components/ChangePage/components/CheckAnswer";
 export default function Home() {
-  const { currentStep, setCurrentStep } = usePageChangeInfo();
+  const { currentStep, setCurrentStep, checkAnswer } = usePageChangeInfo();
   const { questionsArr, setQuestions } = useQuestionsStore();
   const handleChangeSteps = (newStep) => {
     setCurrentStep(newStep);
@@ -24,18 +25,15 @@ export default function Home() {
         <NameRequestPage />
         <WelcomePage />
         <QuestionFilterPage />
-        {questionsArr.length > 0 &&
+        {
+          questionsArr.length > 0 &&
           questionsArr.map((question, index) => (
             <QuestionPage question={question} key={index} index={index} />
-          ))}
-
+          ))
+        }
+        {checkAnswer && (<CheckAnswer />)}
       </ControlledStep>
-      {/* <button
-        className="fixed z-50 bottom-0 px-2 py-1 bg-gray-700 text-white right-0"
-        onClick={() => setCurrentStep(currentStep + 1)}
-      >
-        Next
-      </button> */}
+
     </main>
   );
 }

@@ -12,13 +12,13 @@ export default function QuestionCategory({ category, difficulty }) {
   return (
     <div className="mb-3 flex justify-end">
       <div className="flex gap-2">
-        <span className="px-2 py-1 bg-gray-700 text-white text-base rounded-md">
+        <span className="px-2 py-1 bg-gray-700 text-white sm:text-base text-xs rounded-md">
           {decodeHTMLEntities(category)}
         </span>
         <span
           className={`px-2 py-1 ${difficultyColor(
             difficulty
-          )} text-black text-base rounded-md`}
+          )} text-black sm:text-base text-xs rounded-md`}
         >
           {difficulty}
         </span>
