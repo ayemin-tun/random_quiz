@@ -1,5 +1,6 @@
 import { usePageChangeInfo } from "@/store/PageChange.store";
 import React, { useState } from "react";
+import { FaAngleLeft } from "react-icons/fa";
 
 export default function NameRequestPage() {
   const [error, setError] = useState(false);
@@ -44,14 +45,14 @@ export default function NameRequestPage() {
             className="sm:px-5 px-3 py-1 sm:py-2 bg-red-800 text-white cursor-pointer "
             onClick={(e) => setCurrentStep(currentStep - 1)}
           >
-            Back
+            <FaAngleLeft />
           </button>
 
           <button
             className="sm:px-5 px-3 py-1 sm:py-2 bg-blue-800 text-white cursor-pointer"
             onClick={handleName}
           >
-            Next
+            Save
           </button>
         </div>
       </div>

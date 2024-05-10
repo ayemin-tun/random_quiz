@@ -10,7 +10,8 @@ export default function HomePage() {
     <div className="w-full h-screen grid md:grid-cols-2 grid-cols-1">
       <div className="flex flex-col md:justify-center justify-end md:bg-gradient-to-r md:from-blue-400 md:to-cyan-500 p-6">
         <h1 className="md:flex gap-2 items-center font-extrabold md:text-5xl text-4xl text-wrap mb-4">
-          <LuBrainCircuit className="text-yellow-500" /> Test Your Knowledge
+          <LuBrainCircuit className="text-white font-extrabold mb-2" /> Test
+          Your Knowledge
         </h1>
         <h1 className="mt-5 text-lg text-white font-medium md:hidden">
           If you get a high score, you probably spend way too much time on

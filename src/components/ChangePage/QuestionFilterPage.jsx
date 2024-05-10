@@ -1,6 +1,7 @@
 import { usePageChangeInfo } from "@/store/PageChange.store";
 import React, { useState } from "react";
 import FilterQuestion from "../FilterQuestion";
+import { FaAngleLeft } from "react-icons/fa";
 
 export default function QuestionFilterPage() {
   const { userName, currentStep, setCurrentStep } = usePageChangeInfo();
@@ -17,7 +18,7 @@ export default function QuestionFilterPage() {
             className="sm:px-5 px-3 py-1 sm:py-2 bg-red-800 text-white cursor-pointer "
             onClick={(e) => setCurrentStep(currentStep - 1)}
           >
-            Back
+            <FaAngleLeft />
           </button>
 
           <FilterQuestion />

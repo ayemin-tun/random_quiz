@@ -65,12 +65,19 @@ export default function CheckAnswer() {
         <p className="text-gray-800 text-lg font-bold mb-4 text-center">
           {getTextForUser()}
         </p>
-        <div className="flex justify-center">
+        <div className="flex justify-center gap-3">
           <button
             onClick={handleCheckAnswer}
             className={`sm:px-5 px-3 py-1 sm:py-2 bg-blue-700 text-white cursor-pointer `}
           >
             Check Answers
+          </button>
+
+          <button
+            className={`sm:px-5 px-3 py-1 sm:py-2 bg-red-800 text-white cursor-pointer `}
+            onClick={(e) => setCurrentStep(3)}
+          >
+            Try again
           </button>
         </div>
       </div>
