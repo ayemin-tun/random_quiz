@@ -44,7 +44,7 @@ export default function HomePage() {
         </div>
         <div className="flex justify-center mt-5">
           <button
-            className="bg-cyan-800 text-white font-bold text-base px-5 rounded py-2"
+            className="bg-cyan-800 text-white font-bold text-base px-6 py-3 rounded "
             onClick={() => setCurrentStep(currentStep + 1)}
           >
             Let Get Started ...

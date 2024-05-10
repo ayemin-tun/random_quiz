@@ -16,16 +16,16 @@ export default function WelcomePage() {
           {"  ,let's see how far you will go ... "}
         </h1>
 
-        <div className="flex gap-2 md:justify-start justify-center">
+        <div className="flex gap-2">
           <button
-            className="px-5 py-2 bg-red-800 text-white cursor-pointer "
+            className="px-6 py-3 bg-red-800 text-white cursor-pointer "
             onClick={(e) => setCurrentStep(currentStep - 1)}
           >
             <FaAngleLeft />
           </button>
 
           <button
-            className="px-5 py-2 py-1 sm:py-2 bg-blue-800 text-white cursor-pointer"
+            className="px-6 py-3  sm:py-2 bg-blue-800 text-white cursor-pointer"
             onClick={(e) => setCurrentStep(currentStep + 1)}
           >
             Let Get Start

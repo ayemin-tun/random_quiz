@@ -6,7 +6,7 @@ const FilterQuestion = () => {
   return (
     <Dialog.Root>
       <Dialog.Trigger asChild>
-        <button className="sm:px-5 px-3 py-1 sm:py-2 bg-blue-800 text-white cursor-pointer ">
+        <button className="px-6 py-3 sm:py-2 bg-blue-800 text-white cursor-pointer ">
           Filter Question
         </button>
       </Dialog.Trigger>
@@ -19,7 +19,7 @@ const FilterQuestion = () => {
 
           <Dialog.Close asChild>
             <button
-              className="text-violet11 hover:bg-violet4 focus:shadow-violet7 absolute top-[10px] right-[10px] inline-flex h-[25px] w-[25px] appearance-none items-center justify-center rounded-full focus:shadow-[0_0_0_2px] focus:outline-none"
+              className="text-red-600 hover:bg-violet4 focus:shadow-violet7 absolute top-[10px] right-[10px] inline-flex h-[25px] w-[25px] appearance-none items-center justify-center rounded-full focus:shadow-[0_0_0_2px] focus:outline-none"
               aria-label="Close"
             >
               <Cross2Icon />

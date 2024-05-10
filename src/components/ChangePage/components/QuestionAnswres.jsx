@@ -96,7 +96,7 @@ export default function QuestionAnswers({ question, index }) {
       {!checkAnswer && (
         <div className="flex gap-2 mt-7">
           <button
-            className={`sm:px-5 px-3 py-1 sm:py-2 ${
+            className={`px-6 py-3 ${
               currentStep === 4 ? "bg-gray-500" : "bg-red-800"
             } text-white cursor-pointer `}
             onClick={(e) => setCurrentStep(currentStep - 1)}
@@ -109,7 +109,7 @@ export default function QuestionAnswers({ question, index }) {
             <button
               disabled={!selectedAnswer}
               onClick={handleCheckAnswer}
-              className={`sm:px-5 px-3 py-1 sm:py-2 ${
+              className={`px-6 py-3 ${
                 selectedAnswer ? "bg-blue-800" : "bg-blue-500"
               } text-white cursor-pointer `}
             >
@@ -117,7 +117,7 @@ export default function QuestionAnswers({ question, index }) {
             </button>
           ) : (
             <button
-              className={`sm:px-5 px-3 py-1 sm:py-2 ${
+              className={`px-6 py-3 ${
                 selectedAnswer ? "bg-blue-800" : "bg-blue-500"
               } text-white cursor-pointer `}
               onClick={(e) => setCurrentStep(currentStep + 1)}
@@ -133,7 +133,7 @@ export default function QuestionAnswers({ question, index }) {
         <div className="flex gap-2 justify-between mt-5">
           <div className="flex gap-2">
             <button
-              className={`sm:px-5 px-3 py-1 sm:py-2 ${
+              className={`px-6 py-3 ${
                 currentStep === 4 ? "bg-gray-500" : "bg-red-800"
               } text-white cursor-pointer `}
               onClick={(e) => setCurrentStep(currentStep - 1)}
@@ -144,7 +144,7 @@ export default function QuestionAnswers({ question, index }) {
             {/* {currentStep < parseInt(amount) + 3 && ( */}
             <button
               onClick={(e) => setCurrentStep(currentStep + 1)}
-              className={`sm:px-5 px-3 py-1 sm:py-2 ${
+              className={`px-6 py-3 ${
                 selectedAnswer ? "bg-blue-800" : "bg-blue-500"
               } text-white cursor-pointer sm:text-base text-sm`}
             >
@@ -156,7 +156,7 @@ export default function QuestionAnswers({ question, index }) {
             </button>
           </div>
           <button
-            className={`sm:px-5 px-3 py-1 sm:py-2 ${
+            className={`px-6 py-3 ${
               selectedAnswer ? "bg-blue-800" : "bg-blue-500"
             } text-white cursor-pointer `}
             onClick={(e) => setCurrentStep(3)}

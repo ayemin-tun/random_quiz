@@ -42,14 +42,14 @@ export default function NameRequestPage() {
 
         <div className="flex gap-2">
           <button
-            className="sm:px-5 px-3 py-1 sm:py-2 bg-red-800 text-white cursor-pointer "
+            className="px-6 py-3 sm:py-2 bg-red-800 text-white cursor-pointer "
             onClick={(e) => setCurrentStep(currentStep - 1)}
           >
             <FaAngleLeft />
           </button>
 
           <button
-            className="sm:px-5 px-3 py-1 sm:py-2 bg-blue-800 text-white cursor-pointer"
+            className="px-6 py-3 bg-blue-800 text-white cursor-pointer"
             onClick={handleName}
           >
             Save
