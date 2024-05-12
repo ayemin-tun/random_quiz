@@ -20,8 +20,7 @@ export default function page() {
                     Too Many Requests.
                 </h1>
                 <p className="text-lg text-gray-600 font-bold">
-                    You've made too many requests recently. Please wait and try your
-                    request again later
+                    {"You've made too many requests recently. Please wait and try your request again later"}
                 </p>
                 <button className="px-6 py-3  sm:py-2 bg-blue-800 text-white cursor-pointer rounded-md mt-4" onClick={handleHome}>
                     Go to Home
