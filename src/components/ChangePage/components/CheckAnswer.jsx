@@ -27,11 +27,11 @@ export default function CheckAnswer() {
   const getTextForUser = () => {
     const correctPercentage = (getTotalCorrectAnswer(isCorrect) / amount) * 100;
     if (correctPercentage >= 75) {
-      return "Great job! Excellent Work.";
+      return `Great job ${userName}! Excellent Work.`;
     } else if (correctPercentage >= 35) {
-      return "Good job! Not Bad ... Not Bad.";
+      return `Good job ${userName}! Not Bad ... Not Bad.`;
     } else {
-      return "Keep Going! You could do better.";
+      return `Keep Going ${userName}! You could do better.`;
     }
   };
   const getImagePath = () => {
@@ -41,7 +41,7 @@ export default function CheckAnswer() {
     } else if (correctPercentage >= 35) {
       return "/img/notbad.jpg";
     } else {
-      return "/img/bad.jpg";
+      return "/img/bad.gif";
     }
   };
 
@@ -53,7 +53,7 @@ export default function CheckAnswer() {
             src={getImagePath()}
             alt="image"
             width={300}
-            height={300}
+            height={200}
             className="rounded-xl"
           />
         </div>
@@ -78,14 +78,5 @@ export default function CheckAnswer() {
         </div>
       </div>
     </div>
-    // <div>
-    //   {getTotalCorrectAnswer(isCorrect)}{" "}
-    //   <button
-    //     onClick={handleCheckAnswer}
-    //     className={`sm:px-5 px-3 py-1 sm:py-2 bg-blue-500 text-white cursor-pointer `}
-    //   >
-    //     Check Answer
-    //   </button>
-    // </div>
   );
 }

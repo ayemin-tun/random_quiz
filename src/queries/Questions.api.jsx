@@ -1,5 +1,6 @@
 import { QuestionService } from "@/services/ApiService";
 import { useQuery } from "@tanstack/react-query";
+import { useRouter } from "next/navigation";
 
 export const useGetQuestion = (query) => {
   return useQuery({
