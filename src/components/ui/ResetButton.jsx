@@ -35,7 +35,7 @@ const ResetButton = ({ children, className }) => {
               </button>
             </Dialog.Close>
             <button
-              className="bg-red-600 text-white hover:bg-green5 focus:shadow-green7 inline-flex h-[35px] items-center justify-center rounded-[4px] px-[15px] font-medium leading-none focus:shadow-[0_0_0_2px] focus:outline-none"
+              className="bg-red-600 text-white hover:bg-red-700 inline-flex h-[35px] items-center justify-center rounded-[4px] px-[15px] font-medium leading-none focus:shadow-[0_0_0_2px] focus:outline-none"
               onClick={handleConfirm}
             >
               Confirm

@@ -17,10 +17,10 @@ export default function page() {
         <main className="w-full h-screen bg-gradient-to-r from-cyan-500 to-blue-500 flex justify-center items-center">
             <div className="p-6">
                 <h1 className="text-white font-extrabold text-4xl mb-2">
-                    Too Many Requests.
+                    OOps!
                 </h1>
                 <p className="text-lg text-gray-600 font-bold">
-                    {"You've made too many requests recently. Please wait and try your request again later"}
+                    {"You are requesting too rapidly. Please wait a moment and try your request again."}
                 </p>
                 <button className="px-6 py-3  sm:py-2 bg-blue-800 text-white cursor-pointer rounded-md mt-4" onClick={handleHome}>
                     Go to Home
